@@ -15,7 +15,7 @@ export default class AppProvider {
     // create generator
     const generator = SitemapGenerator('https://kasihkaruniakekalpt.com', {
       stripQuerystring: false,
-      filepath: '/root/app-client/sitemap.xml',
+      filepath: '/root/app-client/public/sitemap.xml',
       lastMod: true,
       priorityMap: [1.0, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0],
     })
