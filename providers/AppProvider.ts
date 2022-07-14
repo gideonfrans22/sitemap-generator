@@ -29,7 +29,7 @@ export default class AppProvider {
     // start the crawler
     generator.start()
 
-    cron.schedule('* * */1 * *', async () => {
+    cron.schedule('* * */1 * *', () => {
       // register event listeners
       generator.on('done', () => {
         // sitemaps created
