@@ -9,6 +9,29 @@ export default class AppProvider {
 
   public async boot() {
     // IoC container is ready
+    const SitemapGenerator = await require('sitemap-generator')
+    const cron = await require('node-cron')
+
+    // create generator
+    const generator = SitemapGenerator('https://kasihkaruniakekalpt.com', {
+      stripQuerystring: false,
+      filepath: '/root/app-client/sitemap.xml',
+      lastMod: true,
+      priorityMap: [1.0, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0],
+    })
+
+    cron.schedule('* * */1 * *', async () => {
+      // register event listeners
+      generator.on('done', () => {
+        // sitemaps created
+        const date = new Date()
+        console.log(`${date.toISOString()}: mapping done`)
+      })
+
+      // start the crawler
+      generator.start()
+    })
+    // console.log('console anything')
   }
 
   public async ready() {
