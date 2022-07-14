@@ -30,13 +30,6 @@ export default class AppProvider {
     generator.start()
 
     cron.schedule('* * */1 * *', () => {
-      // register event listeners
-      generator.on('done', () => {
-        // sitemaps created
-        const date = new Date()
-        console.log(`${date.toISOString()}: mapping done`)
-      })
-
       // start the crawler
       generator.start()
     })
