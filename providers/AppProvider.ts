@@ -19,6 +19,14 @@ export default class AppProvider {
       lastMod: true,
       priorityMap: [1.0, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0],
     })
+    generator.on('done', () => {
+      // sitemaps created
+      const date = new Date()
+      console.log(`${date.toISOString()}: mapping done`)
+    })
+
+    // start the crawler
+    generator.start()
 
     cron.schedule('* * */1 * *', async () => {
       // register event listeners
