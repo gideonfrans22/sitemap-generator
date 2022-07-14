@@ -1,4 +1,5 @@
 import { ApplicationContract } from '@ioc:Adonis/Core/Application'
+import Env from '@ioc:Adonis/Core/Env'
 
 export default class AppProvider {
   constructor(protected app: ApplicationContract) {}
@@ -15,7 +16,7 @@ export default class AppProvider {
     // create generator
     const generator = SitemapGenerator('https://kasihkaruniakekalpt.com', {
       stripQuerystring: false,
-      filepath: '/root/app-client/public/sitemap.xml',
+      filepath: Env.get('SITEMAP_PATH'),
       lastMod: true,
       priorityMap: [1.0, 0.8, 0.7, 0.6, 0.5, 0.4, 0.3, 0],
     })
